@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-md-10">
+    <div class="card">
+      <div class="card-body p-5">
+        <div class="text-center mb-4">
+          <i class="fas fa-user-plus fa-3x text-success mb-3"></i>
+          <h2 class="card-title">Add New Student</h2>
+          <p class="text-muted">Enter student details below</p>
+        </div>
+        <form method="post" action="{{ url_for('add_student') }}">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="name" class="form-label">
+                <i class="fas fa-user me-2"></i>Full Name
+              </label>
+              <input type="text" class="form-control" id="name" name="name" required placeholder="Enter full name" value="{{ (form_data or {}).get('name', '') }}">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="email" class="form-label">
+                <i class="fas fa-envelope me-2"></i>Email
+              </label>
+              <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email" value="{{ (form_data or {}).get('email', '') }}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="phone" class="form-label">
+                <i class="fas fa-phone me-2"></i>Phone
+              </label>
+              <input type="text" class="form-control" id="phone" name="phone" required placeholder="Enter phone number" value="{{ (form_data or {}).get('phone', '') }}">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dob" class="form-label">
+                <i class="fas fa-calendar me-2"></i>Date of Birth
+              </label>
+              <input type="date" class="form-control" id="dob" name="dob" required value="{{ (form_data or {}).get('dob', '') }}">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">
+              <i class="fas fa-map-marker-alt me-2"></i>Address
+            </label>
+            <textarea class="form-control" id="address" name="address" rows="3" required placeholder="Enter full address">{{ (form_data or {}).get('address', '') }}</textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="pincode" class="form-label">
+                <i class="fas fa-map-pin me-2"></i>Pincode
+              </label>
+              <input type="text" class="form-control" id="pincode" name="pincode" required placeholder="Enter pincode" value="{{ (form_data or {}).get('pincode', '') }}">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="college" class="form-label">
+                <i class="fas fa-university me-2"></i>College
+              </label>
+              <select class="form-select" id="college" name="college" required>
+                <option value="">Select College</option>
+                <option value="SJBIT" {% if (form_data or {}).get('college') == 'SJBIT' %}selected{% endif %}>SJBIT</option>
+                <option value="BGSIT" {% if (form_data or {}).get('college') == 'BGSIT' %}selected{% endif %}>BGSIT</option>
+                <option value="SJBCE" {% if (form_data or {}).get('college') == 'SJBCE' %}selected{% endif %}>SJBCE</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="branch" class="form-label">
+                <i class="fas fa-code-branch me-2"></i>Branch
+              </label>
+              <select class="form-select" id="branch" name="branch" required>
+                <option value="">Select Branch</option>
+                <option value="CSE" {% if (form_data or {}).get('branch') == 'CSE' %}selected{% endif %}>CSE</option>
+                <option value="ISE" {% if (form_data or {}).get('branch') == 'ISE' %}selected{% endif %}>ISE</option>
+                <option value="ECE" {% if (form_data or {}).get('branch') == 'ECE' %}selected{% endif %}>ECE</option>
+                <option value="AIML" {% if (form_data or {}).get('branch') == 'AIML' %}selected{% endif %}>AIML</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="section" class="form-label">
+                <i class="fas fa-users me-2"></i>Section
+              </label>
+              <select class="form-select" id="section" name="section" required>
+                <option value="">Select Section</option>
+                <option value="A" {% if (form_data or {}).get('section') == 'A' %}selected{% endif %}>A</option>
+                <option value="B" {% if (form_data or {}).get('section') == 'B' %}selected{% endif %}>B</option>
+                <option value="C" {% if (form_data or {}).get('section') == 'C' %}selected{% endif %}>C</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-success flex-fill">
+              <i class="fas fa-save me-2"></i>Add Student
+            </button>
+            <a href="{{ url_for('students') }}" class="btn btn-secondary">
+              <i class="fas fa-times me-2"></i>Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

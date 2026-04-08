@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
+    <div class="card">
+      <div class="card-body p-5">
+        <div class="text-center mb-4">
+          <i class="fas fa-user-plus fa-3x text-primary mb-3"></i>
+          <h2 class="card-title">Create Account</h2>
+          <p class="text-muted">Join us today and get started</p>
+        </div>
+        <form method="post" action="{{ url_for('signup') }}">
+          <div class="mb-3">
+            <label for="name" class="form-label">
+              <i class="fas fa-user me-2"></i>Full Name
+            </label>
+            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your full name" value="{{ (form_data or {}).get('name', '') }}">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">
+              <i class="fas fa-envelope me-2"></i>Email address
+            </label>
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email" value="{{ (form_data or {}).get('email', '') }}">
+            <div class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="row gx-3">
+            <div class="col-md-6 mb-3">
+              <label for="password" class="form-label">
+                <i class="fas fa-lock me-2"></i>Password
+              </label>
+              <input type="password" class="form-control" id="password" name="password" required placeholder="Create password">
+              <div class="form-text small">8-14 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="confirm" class="form-label">
+                <i class="fas fa-lock me-2"></i>Confirm Password
+              </label>
+              <input type="password" class="form-control" id="confirm" name="confirm" required placeholder="Confirm password">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="mobile" class="form-label">
+              <i class="fas fa-phone me-2"></i>Mobile
+            </label>
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter your mobile number (optional)" value="{{ (form_data or {}).get('mobile', '') }}">
+          </div>
+          <div class="mb-4">
+            <label class="form-label">
+              <i class="fas fa-venus-mars me-2"></i>Gender
+            </label>
+            <select class="form-select" name="gender">
+              <option value="">Select...</option>
+              <option value="Male" {% if (form_data or {}).get('gender') == 'Male' %}selected{% endif %}>Male</option>
+              <option value="Female" {% if (form_data or {}).get('gender') == 'Female' %}selected{% endif %}>Female</option>
+              <option value="Other" {% if (form_data or {}).get('gender') == 'Other' %}selected{% endif %}>Other</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mb-3">
+            <i class="fas fa-user-plus me-2"></i>Sign Up
+          </button>
+        </form>
+        <p class="text-center mb-0">Already have an account? <a href="{{ url_for('login') }}" class="text-decoration-none">Login here</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
